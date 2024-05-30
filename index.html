@@ -1,0 +1,211 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>ZRK</title>
+    <style>
+        .carousel {
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .carousel-container {
+            margin-top: 30px;
+            width: 80%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .carousel-button {
+            font-size: 16px;
+            text-align: center;
+            width: 100px;
+            height: 100px;
+            border-radius: 0%;
+            border: none;
+            opacity: 50%;
+            border-left: 1px solid black;
+            border-right: 1px solid black;
+            background-color: darkolivegreen;
+        }
+
+        .carousel-button:hover {
+            opacity: 100%;
+            cursor: pointer;
+        }
+
+        .image-container {
+            display: flex;
+            align-items: center;
+            width: 80%;
+            aspect-ratio: 16 / 9;
+            overflow: hidden;
+        }
+
+        .image-wrapper {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100%;
+            max-width: 100%;
+            min-width: 100%;
+        }
+
+        .wrapper-1 {
+            transition: margin 1s;
+        }
+
+        .carousel-image {
+            padding: 10px;
+            max-width: 100%;
+            max-height: 100%;
+        }
+
+        .button-container-small {
+            display: flex;
+            justify-content: space-evenly;
+            width: 100%;
+        }
+
+        .carousel-button-small {
+            display: none;
+        }
+
+        .carousel-button-small:hover {
+            opacity: 100%;
+            cursor: pointer;
+        }
+
+        @media (max-width: 1000px) {
+            .image-container {
+                width: 100%;
+            }
+
+            .button-container {
+                margin-bottom: 0px;
+            }
+
+            .carousel-button {
+                display: none;
+            }
+
+            .carousel-button-small {
+                display: flex;
+                flex-direction: row;
+                font-size: 16px;
+                padding: 10px 10% 10px 10%;
+                border-radius: 0%;
+                border: none;
+                opacity: 50%;
+                border-left: 1px solid black;
+                border-right: 1px solid black;
+            }
+        }
+
+        @media (max-width: 700px) {
+            .carousel-container {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Современнные ЗРК ВС России</h1>
+    <section class="carousel">
+        <div class="carousel-container">
+            <button class="carousel-left carousel-button">L</button>
+            <div class="image-container">
+
+                <div class="image-wrapper wrapper-1" style="cursor: pointer;"><img src="img1.jpg" alt="Carousel Image"
+                        class="carousel-image" onclick="nextURL(1)">
+                </div>
+
+                <div class="image-wrapper" style="cursor: pointer;"><img src="img2.jpg" alt="Carousel Image"
+                        class="carousel-image" onclick="nextURL(2)">
+                </div>
+
+                <div class="image-wrapper" style="cursor: pointer;"><img src="img3.jpg" alt="Carousel Image"
+                        class="carousel-image" onclick="nextURL(3)">
+                </div>
+
+            </div>
+            <button class="carousel-right carousel-button">R</button>
+        </div>
+        <div class="button-container-small">
+            <button class="carousel-left-small carousel-button-small">L</button>
+            <button class="carousel-right-small carousel-button-small">R</button>
+        </div>
+    </section>
+    <script>
+        const wrapperOne = document.querySelector('.wrapper-1');
+        const leftButton = document.querySelector('.carousel-left');
+        const rightButton = document.querySelector('.carousel-right');
+        const leftButtonSmall = document.querySelector('.carousel-left-small');
+        const rightButtonSmall = document.querySelector('.carousel-right-small');
+        const imageContainer = document.querySelector('.image-container');
+
+
+        let track = 0;
+
+        let counter = 1;
+
+        const moveImagesLeft = function () {
+            if (counter < imageContainer.childElementCount) {
+                counter++;
+                track = track - 100;
+                wrapperOne.style.marginLeft = `${track}%`;
+            }
+        }
+
+        const moveImagesRight = function () {
+            if (counter > 1) {
+                counter--;
+                track = track + 100;
+                wrapperOne.style.marginLeft = `${track}%`;
+            }
+        }
+
+        document.body.addEventListener("keydown", function (e) {
+            switch (e.key) {
+                case "ArrowLeft":
+                    moveImagesRight();
+            }
+        })
+
+        document.body.addEventListener("keydown", function (e) {
+            switch (e.key) {
+                case "ArrowRight":
+                    moveImagesLeft();
+            }
+        })
+
+        rightButton.addEventListener('click', () => {
+            moveImagesLeft();
+        });
+
+        rightButtonSmall.addEventListener('click', () => {
+            moveImagesLeft();
+        });
+
+        leftButton.addEventListener('click', () => {
+            moveImagesRight();
+        });
+
+        leftButtonSmall.addEventListener('click', () => {
+            moveImagesRight();
+        });
+
+        function nextURL(n) {
+            URL = 'index_' + n + '.html'
+            window.location.replace(URL)
+        }
+
+
+    </script>
+</body>
+
+</html>

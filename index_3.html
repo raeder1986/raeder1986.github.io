@@ -1,0 +1,109 @@
+<html>
+
+<head>
+    <meta charset="utf-8" />
+    <title>ZRK</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+
+        .accordion {
+            background-color: darkolivegreen;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            text-align: center;
+            border: 1px solid black;
+            outline: none;
+            transition: 0.4s;
+            margin-top: 6px;
+            margin-bottom: 6px;
+        }
+
+        .active,
+        .accordion:hover {
+            background-color: #ccc;
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            display: none;
+            overflow: hidden;
+            text-align: left;
+        }
+
+        .back-button {
+            background-color: darkolivegreen;
+            color: white;
+            border: 1px solid black;
+            padding: 10px 12px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 14px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 8px;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 style="text-align: center;">Панцирь-С2</h1>
+    <button class="accordion">Описание</button>
+    <div class="panel">
+        <p>Комплекс отличается наличием комбинированного  ракетно-пушечного вооружения, малым временем реакции и способностью боевой машины вести разведку  и уничтожение воздушных целей в движении.
+           <br>ЗРПК "Панцирь-С2" предназначен для противовоздушной обороны малоразмерных военных, в том числе подвижных, и административно-промышленных объектов и районов от самолетов, вертолетов, крылатых ракет и высокоточного оружия, а также для усиления группировок ПВО при отражении массированных ударов средств воздушного нападения.</p>
+    </div>
+
+    <button class="accordion">Дальность поражения</button>
+    <div class="panel">
+        <p>до 20 км</p>
+    </div>
+
+    <button class="accordion">Число одновременно обстреливаемых целей</button>
+    <div class="panel">
+        <p>до 4</p>
+    </div>
+
+    <button class="accordion">Год принятия на вооружение</button>
+    <div class="panel">
+        <p>2014 год</p>
+    </div>   
+    <button class="back-button" onclick="goBack()">На главную (Escape)</button> 
+    <script>
+        var acc = document.getElementsByClassName("accordion");
+        var i;
+
+        for (i = 0; i < acc.length; i++) {
+            acc[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var panel = this.nextElementSibling;
+                if (panel.style.display === "block") {
+                    panel.style.display = "none";
+                } else {
+                    panel.style.display = "block";
+                }
+            });
+        }
+
+        function goBack() {
+            window.location.href = 'index.html';
+        }
+
+        document.body.addEventListener("keydown", function (e) {
+            switch (e.key) {
+                case "Escape":
+                    goBack();
+            }
+        })
+
+    </script>
+</body>
+
+</html>
